@@ -1,0 +1,83 @@
+COMANDOS GIT:
+
+-git --version: Consulta la version de Git instalada.
+-git help: Pide ayuda a Git y abre una guia de comandos y demas.
+-git help 'comando': Ayuda de Git sobre un comando especifico.
+-git config --global user.name "Franco Bizzarri": Le avisamos a Git cual es nuestro nombre de usuario 
+-git config --global user.email "frann3112gmail.com": Le avisamos a Git cual es nuestro Email.
+-git config --global -e: Sirve para verificar los datos de usuario (nombre de usuario y mail) que hemos ingresado.
+-git init: Inicializa un repositorio
+-clear: Limpia la consola.
+-git status: Git provee informacion del estado en que se encuentra el repositorio. Sobre commits realizados, 
+	    sobre untracked files (archivos sin seguimiento: Git no sabe sobre alguna modificacion sobre ciertos archivos), etc.
+-git add: Se agregan archivos a Git para que les de seguimiento.
+-git add . : Se agregan todos los archivos Untracked y todos los cambios de una sola vez a Git.
+-git reset "nombre del archivo": Se utiliza para eliminar un archivo que ha sido agregado mediante git add. Puede ser
+				un archivo que fue agregado por error y este comando lo trae de vuelta para seguir trabajando en él.
+-git commit -m "nombre del commit": Se envian los cambios a Git de todos los archivos Untracked (sin seguimiento).
+-git checkout -- .: Sirve para recuperar una version anterior (ultimo commit) del repositorio DE LOS ARCHIVOS QUE TENIAN SEGUIMIENTO (TRACKED FILES)
+-git branch -m master main: Sirve para cambiar el nombre de la rama principal, de master a main.
+-git commit -am: Combina git add con git commit -m y solo funciona en archivos tracked.
+-git log: Muestra un registro de los cambios en los archivos: commit, quien realizo los commit, fecha de commit, nombre de commit, etc.
+-git add *.html: Agrega todos los archivos .html que todavia no tienen seguimiento (untracked files)
+-git add js/*.js: Agrega todos los archivos .js dentro de la carpeta js que todavia no tienen seguimiento (untracked files)
+-git add css/: Agrega todo el contenido dentro de la carpeta "css".
+-git status --short: Muestra las modificaciones realizadas de manera muy resumida.
+-git config --global alias.s status --short : Crea un ALIAS para un comando determinado, en este caso, para el comando 
+					      git status --short se crea el alias "s" y pasaria a ser git s.
+-git log --oneline: Muestra el registro de los cambios (commits) de una forma mas abreviada.
+-git log --oneline --decorate --all --graph: Muestra el registro de los cambios (commits) de una forma mas grafica y estructurada, y mas entendible.
+
+-ALIAS FERNANDO HERRERA: 
+
+-REGISTRO: git config --global alias.lg "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+
+-git diff: Muestra los cambios en diferentes commits
+-git commit --amend -m "": Sirve para corregir el nombre de un commit anterior.
+-git reset --soft HEAD^: Sirve para resetear el commit anterior (La palabra HEAD apunta al ultimo commit realizado y el simbolo ^ sin numeros posteriormente apunta al commit ultimo que se realizo, sino, se puede utilizar ^1, ^2, ^3, etc).
+-git reset --mixed "hash": Es similar a git reset --soft con la diferencia de que quita los cambios del Stage y quedan listos para volver a ser añadidos.
+-git reset --hard "hash": Este comando es destructivo, es decir, elimina todos los cambios realizados (aunque se pueden recuperar) y nos devuelve al commit del hash indicado.
+-git reflog: Es un registro de todo lo que ha sucedido (cambios/commits) en orden cronologico y nos sirve para volver a visualizar los hash de commits que ya han sido borrados, y asi poder volver a ellos recuperando la informacion eliminada.
+-git mv destruir-mundo.md salvar-mundo.md: El comando "mv" hace referencia a la palabra "Move" (mover) pero en este caso utilizamos el comando para mover el archivo al mismo directorio pero cambiandole el nombre. En otras palabras, estamos renombrando el archivo destruir-mundo a salvar-mundo
+-git rm "nombre del archivo": Elimina el archivo
+-git reset --hard: Es muy similar al git checkout, recupera un archivo eliminado.
+-git branch: Nos muestra la rama en que estamos trabajando.
+-git branch "nombre rama": Crea una rama nueva
+-git checkout "nombre rama": Cambia de rama
+-git branch -d "nombre rama": Elimina una rama
+-git branch -d "nombre rama" -f: Elimina una rama de manera forzada
+-git checkout -b "nombre rama": Crea una rama nueva y se posiciona automaticamente en la nueva rama
+-git merge "nombre de rama": Une las ramas. Se recomienda posicionarse en la rama principal (main) y hacer el merge desde ahi.
+-git merge --abort: Cancela la union de las ramas.
+-git tag "nombre etiqueta": Crea una etiqueta de la version del repositorio en la que estamos trabajando.
+-git tag -d "nombre etiqueta": Elimina una etiqueta
+-git tag -a v1.0.0 -m "Mensaje de creacion de etiqueta" *: Este comando se utiliza para crear una etiqueta de nuestro repositorio cuando ya estamos en una version casi lista o terminada de nuestro proyecto.
+ 
+*NOTA: Los nombres de etiqueta se suelen colocar asi: v1.0.0 donde la "v" significa "version", el primer numero corresponde a cambios significativos o cambios de version en nuestro proyecto,
+	el segundo numero corresponde a modificaciones mas pequeñas en nuestro proyecto (por ej: Se añadieron nuevas funcionalidades), y el tercer numero corresponde a buf fixes.
+
+-git tag -a v0.1.0 "hash commit" -m "Mensaje de version": Se utiliza para crear una etiqueta en un commit realizado anteriormente en el tiempo
+-git show v0.1.0: Muestra informacion de la etiqueta creada en determinada version de nuestra app/proyecto
+-git stash: Crea un stash, que es una "bóveda" que sirve para guardar cambios que todavia no estan listos para ser implementados y que no se han realizado commits 
+-git stash list: Muestra una lista con todos los stash creados
+-git stash pop: Nos posiciona en el ultimo stash creado.
+-git stash clear: Borra todos los stashes
+-git stash show "hash del stash": Muestra el stash indicado.
+-git stash save: Guarda el stash y agrega el contenido al main
+-git stash list --stat: Muestra una lista de los stashes creados pero con mas informacion
+
+REBASE:
+
+-git rebase master: Actualiza la rama, agregando commits de la rama master a la rama secundaria
+-git rebase -i HEAD~3: Sirve para ordenar commits, para corregir mensajes de commits, para unir commits y para separar comits
+
+-git checkout -- "nombre archivo": Vuelve el archivo al estado en que se encontraba en el ultimo commit.
+
+
+GITHUB:
+
+-git push --tags: pushea las tags creadas al repositorio en github
+-git remote prune origin: Revisa las ramas que han sido eliminadas (ramas basura) en el repositorio remoto (github) y las elimina.
+-git checkout v1.0.0: Vuelve a una version determinada del proyecto  
+-git push origin :"nombre rama": Elimina una rama en el repositorio remoto (github)
+
